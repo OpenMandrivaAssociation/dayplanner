@@ -2,7 +2,7 @@
 %{?_with_holidayparser: %{expand: %%global include_holidayparser 1}}
 
 %define	name	dayplanner
-%define	version 0.5.1
+%define	version 0.6
 %define rel	1
 %define	release	%mkrel %rel
 
