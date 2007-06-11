@@ -2,7 +2,7 @@
 %{?_with_holidayparser: %{expand: %%global include_holidayparser 1}}
 
 %define	name	dayplanner
-%define	version 0.6
+%define	version 0.7
 %define rel	1
 %define	release	%mkrel %rel
 
@@ -74,17 +74,6 @@ install -m644 ./art/dayplanner_HC24.png -D $RPM_BUILD_ROOT%{_iconsdir}/dayplanne
 install -m644 ./art/dayplanner_HC16.png -D $RPM_BUILD_ROOT%{_miconsdir}/dayplanner_HC.png
 install -m644 ./art/dayplanner_HC48.png -D $RPM_BUILD_ROOT%{_liconsdir}/dayplanner_HC.png
 
-# Menu
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}):command="%{_bindir}/dayplanner" \
-	icon="dayplanner.png" \
-	needs="x11" \
-	section="Office/Time Management" \
-	title="Day planner" \
-	longtitle="An easy to use graphical day planner" \
-	xdg="true"
-EOF
 ./devel-tools/GenDesktop %{_bindir}
 install -m644 ./doc/%{name}.desktop -D $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
 
@@ -114,10 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/dayplanner*.png
 %{_miconsdir}/dayplanner*.png
 %{_liconsdir}/dayplanner*.png
-%{_menudir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 
 %files tools
 %{_bindir}/dayplanner-commander
-
-
