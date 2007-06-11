@@ -3,11 +3,11 @@
 
 %define	name	dayplanner
 %define	version 0.7
-%define rel	1
+%define rel	2
 %define	release	%mkrel %rel
 
 Name:		%{name} 
-Summary:	An easy and clean day planner
+Summary:	An easy and clean Day Planner
 Version:	%{version} 
 Release:	%{release} 
 Source0:	%{name}-%{version}.tar.bz2
@@ -19,9 +19,9 @@ BuildRequires:	perl
 BuildArch:	noarch
 
 %description
-Day planner is a simple time management program.
+Day Planner is a simple time management program.
 
-Day planner is designed to help you easily manage your time.
+Day Planner is designed to help you easily manage your time.
 It can manage appointments, birthdays and more. It makes sure you
 remember your appointments by popping up a dialog box reminding you about it.
 
@@ -30,14 +30,14 @@ This package also includes the Date::HolidayParser perl module
 %endif
 
 %package tools
-Summary: Various tools for use with day planner
+Summary: Various tools for use with Day Planner
 Group: Office
 Requires: dayplanner
 
 %description tools
-This package contains various tools for use with day planner:
+This package contains various tools for use with Day Planner:
 
-dayplanner-commander     : Send raw commands to the day planner daemon
+dayplanner-commander     : Send raw commands to the Day Planner daemon
 
 %prep
 %setup -q
@@ -56,24 +56,27 @@ install -m755 ./tools/commander $RPM_BUILD_ROOT%{_bindir}/dayplanner-commander
 
 install -m644 ./art/dayplanner-about.png $RPM_BUILD_ROOT%{_datadir}/%name/
 
+# Install the DP:: modules
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/%name/modules/DP/
+cp -r ./modules/DP-GeneralHelpers/lib/DP/* $RPM_BUILD_ROOT%{_datadir}/%name/modules/DP/
+cp -r ./modules/DP-iCalendar/lib/DP/* $RPM_BUILD_ROOT%{_datadir}/%name/modules/DP/
+chmod 644 $RPM_BUILD_ROOT%{_datadir}/%name/modules/*/*pm
 # Install Date::HolidayParser if needed
 %if %include_holidayparser
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/%name/modules/Date-HolidayParser/lib/
-cp -r ./modules/Date-HolidayParser/lib/* $RPM_BUILD_ROOT%{_datadir}/%name/modules/Date-HolidayParser/lib/
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/%name/modules/Date/
+cp -r ./modules/Date-HolidayParser/lib/Date/* $RPM_BUILD_ROOT%{_datadir}/%name/modules/Date/
 %endif
-# Install DP::iCalendar
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/%name/modules/DP-iCalendar/lib/
-cp -r ./modules/DP-iCalendar/lib/* $RPM_BUILD_ROOT%{_datadir}/%name/modules/DP-iCalendar/lib/
 
 # Install the icons
 install -m644 ./art/dayplanner-24x24.png -D $RPM_BUILD_ROOT%{_iconsdir}/dayplanner.png
 install -m644 ./art/dayplanner-16x16.png -D $RPM_BUILD_ROOT%{_miconsdir}/dayplanner.png
 install -m644 ./art/dayplanner-48x48.png -D $RPM_BUILD_ROOT%{_liconsdir}/dayplanner.png
-# (High contrast versions)
+# (High contrast icons)
 install -m644 ./art/dayplanner_HC24.png -D $RPM_BUILD_ROOT%{_iconsdir}/dayplanner_HC.png
 install -m644 ./art/dayplanner_HC16.png -D $RPM_BUILD_ROOT%{_miconsdir}/dayplanner_HC.png
 install -m644 ./art/dayplanner_HC48.png -D $RPM_BUILD_ROOT%{_liconsdir}/dayplanner_HC.png
 
+# Menu
 ./devel-tools/GenDesktop %{_bindir}
 install -m644 ./doc/%{name}.desktop -D $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
 
