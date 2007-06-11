@@ -66,9 +66,9 @@ mkdir -p $RPM_BUILD_ROOT%{_datadir}/%name/modules/DP-iCalendar/lib/
 cp -r ./modules/DP-iCalendar/lib/* $RPM_BUILD_ROOT%{_datadir}/%name/modules/DP-iCalendar/lib/
 
 # Install the icons
-install -m644 ./art/dayplanner_24.png -D $RPM_BUILD_ROOT%{_iconsdir}/dayplanner.png
-install -m644 ./art/dayplanner_16.png -D $RPM_BUILD_ROOT%{_miconsdir}/dayplanner.png
-install -m644 ./art/dayplanner_48.png -D $RPM_BUILD_ROOT%{_liconsdir}/dayplanner.png
+install -m644 ./art/dayplanner_24x24.png -D $RPM_BUILD_ROOT%{_iconsdir}/dayplanner.png
+install -m644 ./art/dayplanner_16x16.png -D $RPM_BUILD_ROOT%{_miconsdir}/dayplanner.png
+install -m644 ./art/dayplanner_48x48.png -D $RPM_BUILD_ROOT%{_liconsdir}/dayplanner.png
 # (High contrast versions)
 install -m644 ./art/dayplanner_HC24.png -D $RPM_BUILD_ROOT%{_iconsdir}/dayplanner_HC.png
 install -m644 ./art/dayplanner_HC16.png -D $RPM_BUILD_ROOT%{_miconsdir}/dayplanner_HC.png
