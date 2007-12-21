@@ -13,6 +13,7 @@ Release:	%{release}
 Source0:	%{name}-%{version}.tar.bz2
 URL:		http://www.day-planner.org/
 Group:		Office
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 License:	GPL
 BuildRequires:	perl
 BuildArch:	noarch
