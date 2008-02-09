@@ -1,8 +1,8 @@
-%define include_holidayparser	0
+%define include_holidayparser	1
 %{?_with_holidayparser: %{expand: %%global include_holidayparser 1}}
 
 %define	name	dayplanner
-%define	version 0.7.2
+%define	version 0.8.1
 %define rel	1
 %define	release	%mkrel %rel
 
@@ -10,11 +10,11 @@ Name:		%{name}
 Summary:	An easy and clean Day Planner
 Version:	%{version} 
 Release:	%{release} 
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	http://download.gna.org/dayplanner/%{name}-%{version}.tar.bz2
 URL:		http://www.day-planner.org/
 Group:		Office
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-License:	GPL
+License:	GPLv3+
 BuildRequires:	perl
 BuildArch:	noarch
 
