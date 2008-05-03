@@ -1,6 +1,7 @@
 %define include_holidayparser	1
 %{?_with_holidayparser: %{expand: %%global include_holidayparser 1}}
 
+%define _requires_exceptions perl\(DP::CoreModules\)
 %define	name	dayplanner
 %define	version 0.9
 %define rel	1
