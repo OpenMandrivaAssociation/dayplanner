@@ -3,8 +3,8 @@
 
 %define _requires_exceptions perl\(DP::CoreModules\)
 %define	name	dayplanner
-%define	version 0.9
-%define rel	2
+%define	version 0.9.1
+%define rel	1
 %define	release	%mkrel %rel
 
 Name:		%{name} 
@@ -33,9 +33,9 @@ remember your appointments by popping up a dialog box reminding you about it.
 rm -rf $RPM_BUILD_ROOT
 
 %if include_holidayparser
-%makeinstall DHPinstall
+%makeinstall_std DHPinstall prefix=/usr
 %else
-%makeinstall
+%makeinstall_std prefix=/sur
 %endif
 
 # Install the icons
