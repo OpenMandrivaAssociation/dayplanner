@@ -3,7 +3,7 @@
 
 %define _requires_exceptions perl\(DP::CoreModules\)
 %define	name	dayplanner
-%define	version 0.9.1
+%define	version 0.9.2
 %define rel	1
 %define	release	%mkrel %rel
 
