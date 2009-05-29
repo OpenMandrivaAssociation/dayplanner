@@ -3,7 +3,7 @@
 
 %define _requires_exceptions perl\(DP::CoreModules\)
 %define	name	dayplanner
-%define	version 0.9.2
+%define	version 0.10
 %define rel	1
 %define	release	%mkrel %rel
 
@@ -72,6 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/dayplanner-daemon
 %{_bindir}/dayplanner-notifier
 %{_datadir}/%name/
+%{_mandir}/man1/*
 %{_iconsdir}/dayplanner*.png
 %{_miconsdir}/dayplanner*.png
 %{_liconsdir}/dayplanner*.png
