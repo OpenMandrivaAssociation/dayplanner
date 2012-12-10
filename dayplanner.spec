@@ -1,21 +1,20 @@
 %define include_holidayparser	1
 %{?_with_holidayparser: %{expand: %%global include_holidayparser 1}}
 
+%if %{_use_internal_dependency_generator}
+%define __noautoreq 'perl\\(DP::CoreModules\\)'
+%else
 %define _requires_exceptions perl\(DP::CoreModules\)
-%define	name	dayplanner
-%define	version 0.10
-%define rel	2
-%define	release	%mkrel %rel
+%endif
 
-Name:		%{name} 
+Name:		dayplanner
 Summary:	An easy and clean Day Planner
-Version:	%{version} 
-Release:	%{release} 
-Source0:	http://download.gna.org/dayplanner/%{name}-%{version}.tar.bz2
-URL:		http://www.day-planner.org/
+Version:	0.10
+Release:	3
 Group:		Office
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 License:	GPLv3+
+URL:		http://www.day-planner.org/
+Source0:	http://download.gna.org/dayplanner/%{name}-%{version}.tar.bz2
 BuildRequires:	perl
 BuildArch:	noarch
 
@@ -30,7 +29,6 @@ remember your appointments by popping up a dialog box reminding you about it.
 %setup -q
 
 %install
-rm -rf $RPM_BUILD_ROOT
 
 %if include_holidayparser
 %makeinstall_std DHPinstall prefix=/usr
@@ -39,34 +37,20 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 # Install the icons
-install -m644 ./art/dayplanner-24x24.png -D $RPM_BUILD_ROOT%{_iconsdir}/dayplanner.png
-install -m644 ./art/dayplanner-16x16.png -D $RPM_BUILD_ROOT%{_miconsdir}/dayplanner.png
-install -m644 ./art/dayplanner-48x48.png -D $RPM_BUILD_ROOT%{_liconsdir}/dayplanner.png
+install -m644 ./art/dayplanner-24x24.png -D %{buildroot}%{_iconsdir}/dayplanner.png
+install -m644 ./art/dayplanner-16x16.png -D %{buildroot}%{_miconsdir}/dayplanner.png
+install -m644 ./art/dayplanner-48x48.png -D %{buildroot}%{_liconsdir}/dayplanner.png
 # (High contrast icons)
-install -m644 ./art/dayplanner_HC24.png -D $RPM_BUILD_ROOT%{_iconsdir}/dayplanner_HC.png
-install -m644 ./art/dayplanner_HC16.png -D $RPM_BUILD_ROOT%{_miconsdir}/dayplanner_HC.png
-install -m644 ./art/dayplanner_HC48.png -D $RPM_BUILD_ROOT%{_liconsdir}/dayplanner_HC.png
+install -m644 ./art/dayplanner_HC24.png -D %{buildroot}%{_iconsdir}/dayplanner_HC.png
+install -m644 ./art/dayplanner_HC16.png -D %{buildroot}%{_miconsdir}/dayplanner_HC.png
+install -m644 ./art/dayplanner_HC48.png -D %{buildroot}%{_liconsdir}/dayplanner_HC.png
 
 # Find the localization
 %find_lang %{name}
 
-%if %mdkversion < 200900
-%post 
-%{update_menus}
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_menus}
-%endif
-
-%clean 
-rm -rf $RPM_BUILD_ROOT 
-
 %files -f dayplanner.lang
 # Note to packagers: Please leave COPYING in here as this package is distributed
 #  from the software website aswell
-%defattr(-,root,root)
 %doc AUTHORS COPYING NEWS THANKS TODO ./doc/*
 %{_bindir}/dayplanner
 %{_bindir}/dayplanner-daemon
@@ -78,3 +62,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_liconsdir}/dayplanner*.png
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
+
