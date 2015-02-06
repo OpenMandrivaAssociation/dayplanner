@@ -7,7 +7,7 @@
 Summary:	An easy and clean Day Planner
 Name:		dayplanner
 Version:	0.11
-Release:	1
+Release:	2
 Group:		Office
 License:	GPLv3+
 URL:		http://www.day-planner.org/
