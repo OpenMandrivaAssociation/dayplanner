@@ -10,7 +10,7 @@ Version:	0.11
 Release:	2
 Group:		Office
 License:	GPLv3+
-URL:		http://www.day-planner.org/
+URL:		https://www.day-planner.org/
 Source0:	http://download.gna.org/dayplanner/%{name}-%{version}.tar.bz2
 BuildRequires:	perl-devel
 BuildRequires:	perl(Locale::gettext)
